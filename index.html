@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>2026년 11월 하이원 리조트 2박 3일 온 가족 여행</title>
+  <title>하이원 리조트 2박 3일 온 가족 여행 계획</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
@@ -230,6 +230,20 @@
       color: #ffffff;
     }
 
+    /* 상단 메뉴 '준비물' 탭 별도 하이라이트 */
+    .sub-nav-tab[data-nav-tab="checklist"] {
+      background-color: #e8f2ff;
+      color: var(--colors-primary);
+      border: 1px solid rgba(0, 102, 204, 0.35);
+      font-weight: 600;
+    }
+
+    .sub-nav-tab[data-nav-tab="checklist"].active {
+      background-color: var(--colors-primary);
+      color: #ffffff;
+      border-color: var(--colors-primary);
+    }
+
     /* Apple Button Grammar */
     .button-primary {
       display: inline-flex;
@@ -403,12 +417,45 @@
       margin-bottom: 28px;
     }
 
+    /* 투표가 있는 소제목 4개 한 줄 표출 */
     .hero-cta-row {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 16px;
-      flex-wrap: wrap;
+      gap: 8px;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      padding-bottom: 4px;
+      scrollbar-width: none;
+    }
+
+    .hero-cta-row::-webkit-scrollbar {
+      display: none;
+    }
+
+    .hero-vote-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--colors-primary);
+      color: #ffffff;
+      border: none;
+      border-radius: var(--rounded-pill);
+      font-family: var(--font-text);
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.29;
+      letter-spacing: -0.224px;
+      padding: 8px 15px;
+      min-height: 36px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      cursor: pointer;
+      transition: transform 0.15s ease;
+    }
+
+    .hero-vote-pill:active {
+      transform: scale(0.95);
     }
 
     /* Section Tile Headings */
@@ -469,6 +516,17 @@
       border-color: rgba(255, 255, 255, 0.12);
     }
 
+    /* 투표가 필요한 일정 카드 하이라이트 */
+    .store-utility-card.is-votable {
+      background-color: #f0f7ff;
+      border: 1.5px solid var(--colors-primary);
+    }
+
+    .tile-dark .store-utility-card.is-votable {
+      background-color: #1f2b3a;
+      border: 1.5px solid var(--colors-primary-on-dark);
+    }
+
     .card-top-meta {
       display: flex;
       align-items: center;
@@ -503,6 +561,18 @@
     .tile-dark .card-status-chip {
       background-color: var(--colors-surface-tile-3);
       color: var(--colors-body-muted);
+    }
+
+    .card-status-chip.vote-highlight {
+      background-color: var(--colors-primary);
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    .tile-dark .card-status-chip.vote-highlight {
+      background-color: var(--colors-primary-on-dark);
+      color: #000000;
+      font-weight: 600;
     }
 
     .card-title-strong {
@@ -566,10 +636,10 @@
       color: var(--colors-primary-on-dark);
     }
 
-    /* Empty-Ready Packing Checklist Section */
+    /* Empty-Ready Packing Checklist Section (Highlighted) */
     .checklist-card {
-      background-color: var(--colors-canvas);
-      border: 1px solid var(--colors-hairline);
+      background-color: #f8fbff;
+      border: 1.5px solid var(--colors-primary);
       border-radius: var(--rounded-lg);
       padding: var(--spacing-lg);
     }
@@ -1005,7 +1075,7 @@
       color: var(--colors-ink-muted-80);
     }
 
-    /* Budget Table inside Parent Budget Modal */
+    /* Budget Modal Add / Edit / Delete UI */
     .budget-total-banner {
       background-color: var(--colors-canvas-parchment);
       border-radius: var(--rounded-lg);
@@ -1016,13 +1086,33 @@
       margin-bottom: 16px;
     }
 
+    .budget-add-form {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+    }
+
     .budget-row-item {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
+      gap: 10px;
       padding: 12px 0;
       border-bottom: 1px solid var(--colors-divider-soft);
+      flex-wrap: wrap;
+    }
+
+    .budget-name-input {
+      flex: 1;
+      min-width: 140px;
+      font-family: var(--font-text);
+      font-size: 17px;
+      padding: 6px 10px;
+      border: 1px solid var(--colors-hairline);
+      border-radius: var(--rounded-sm);
+      color: var(--colors-ink);
+      background-color: var(--colors-canvas);
     }
 
     .budget-num-input {
@@ -1035,6 +1125,13 @@
       border: 1px solid var(--colors-hairline);
       border-radius: var(--rounded-sm);
       color: var(--colors-ink);
+      background-color: var(--colors-canvas);
+    }
+
+    .budget-name-input:focus,
+    .budget-num-input:focus {
+      outline: 2px solid var(--colors-primary-focus);
+      border-color: transparent;
     }
 
     /* Footer (Parchment #f5f5f7) */
@@ -1109,6 +1206,9 @@
       .media-preview-row {
         grid-template-columns: 1fr;
       }
+      .hero-cta-row {
+        justify-content: flex-start;
+      }
     }
 
     @media (max-width: 419px) {
@@ -1149,11 +1249,13 @@
   <header class="tile-light">
     <div class="tile-inner hero-header-stack">
       <p class="hero-eyebrow">2026. 11. 16(월) – 11. 18(수) · 2박 3일</p>
-      <h1 class="hero-headline">2026년 11월 하이원 리조트 2박 3일 온 가족 여행</h1>
+      <h1 class="hero-headline">하이원 리조트 2박 3일 온 가족 여행 계획</h1>
       <p class="hero-lead">아빠 · 엄마 · 지후 · 은조 · 은후</p>
       <div class="hero-cta-row">
-        <a href="#section-day1" class="button-primary">1일차 액티비티 투표</a>
-        <button type="button" class="button-secondary-pill" id="btnHeroShare">가족방 주소 복사</button>
+        <button type="button" class="hero-vote-pill" data-quick-vote="day1:d1-activity">1일차 액티비티 투표</button>
+        <button type="button" class="hero-vote-pill" data-quick-vote="day1:d1-lunch">1일차 점심 투표</button>
+        <button type="button" class="hero-vote-pill" data-quick-vote="day3:d3-sightseeing">3일차 관광지 투표</button>
+        <button type="button" class="hero-vote-pill" data-quick-vote="day3:d3-lunch">3일차 점심 투표</button>
       </div>
     </div>
   </header>
@@ -1666,10 +1768,13 @@
         renderSubNav();
         renderMainSections();
 
-        // If modal is open and no inline video is currently playing, refresh modal counts smoothly
         if (currentModalContext && currentModalContext.type === "item" && playingVideoOptIdx === null) {
           const refreshed = findItemById(currentModalContext.dayId, currentModalContext.itemId);
           if (refreshed) renderSheetContent(currentModalContext.dayId, refreshed);
+        }
+
+        if (currentModalContext && currentModalContext.type === "budget") {
+          openBudgetModal();
         }
       });
     }
@@ -1981,7 +2086,20 @@
     }
 
     document.getElementById("btnShareUrl").addEventListener("click", copyCleanSiteUrl);
-    document.getElementById("btnHeroShare").addEventListener("click", copyCleanSiteUrl);
+
+    // Quick vote buttons in Hero Header
+    document.querySelectorAll("[data-quick-vote]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const [dayId, baseKey] = btn.getAttribute("data-quick-vote").split(":");
+        let targetItemId = baseKey;
+        if (baseKey === "d1-lunch") {
+          targetItemId = "d1-lunch-" + getSelectedDay1Activity().activity.key;
+        } else if (baseKey === "d3-lunch") {
+          targetItemId = "d3-lunch-" + getSelectedDay3Sightseeing().sightseeing.key;
+        }
+        openItemSheet(dayId, targetItemId);
+      });
+    });
 
     // Sub-Nav Tabs
     const NAV_ITEMS = [
@@ -2019,7 +2137,7 @@
 
         if (isVotable) {
           const stats = getAnonymousStatsForOptions(item.id, item.options.length);
-          statusHtml = `<span class="card-status-chip">무기명 투표 ${stats.totalVotes}/5</span>`;
+          statusHtml = `<span class="card-status-chip vote-highlight">투표 필요 · ${stats.totalVotes}/5</span>`;
           const previewLabel = item.optionType === "video" ? "영상·지도 보고 투표하기" : "식당 사진·지도 보고 투표하기";
           if (stats.totalVotes > 0 && stats.topIndices.length > 0) {
             const topNames = stats.topIndices.map(i => item.options[i].name).join(" · ");
@@ -2032,7 +2150,7 @@
         }
 
         return `
-          <article class="store-utility-card" role="button" tabindex="0" data-day-id="${day.id}" data-item-id="${item.id}">
+          <article class="store-utility-card ${isVotable ? "is-votable" : ""}" role="button" tabindex="0" data-day-id="${day.id}" data-item-id="${item.id}">
             <div>
               <div class="card-top-meta">
                 <span class="card-time-label">${item.time}</span>
@@ -2458,43 +2576,97 @@
       detailSheet.classList.add("open");
     }
 
-    // Parent Budget Modal (Real-time synced)
+    // Parent Budget Modal (항목 추가 · 항목명/금액 수정 · 삭제 · 실시간 동기화)
     function openBudgetModal() {
       currentModalContext = { type: "budget" };
       document.getElementById("sheetHeadline").textContent = "예상 여행 경비";
-      document.getElementById("sheetSubcopy").textContent = "부모 확인용 · 금액을 수정하면 실시간으로 저장됩니다";
+      document.getElementById("sheetSubcopy").textContent = "부모 확인용 · 항목을 추가하거나 이름·금액을 수정하면 실시간 저장됩니다";
+
+      const syncBudgetData = () => {
+        if (tripRef) {
+          tripRef.child("budget").set(appState.budget);
+        } else {
+          saveLocalCache();
+        }
+      };
 
       const renderBudgetBody = () => {
         const total = appState.budget.reduce((acc, b) => acc + (Number(b.amount) || 0), 0);
-        const rowsHtml = appState.budget.map((b, idx) => `
-          <div class="budget-row-item">
-            <span>${escapeHtml(b.name)}</span>
-            <div style="display: flex; align-items: center; gap: 6px;">
-              <input type="number" class="budget-num-input" data-b-idx="${idx}" value="${b.amount}" step="1000" min="0" />
-              <span>원</span>
-            </div>
-          </div>
-        `).join("");
+        const perPerson = Math.round(total / 5);
+
+        const rowsHtml = appState.budget.length === 0
+          ? `<div class="empty-state-box">등록된 경비 항목이 없습니다. 위에서 새 항목을 추가해 보세요.</div>`
+          : appState.budget.map((b, idx) => `
+              <div class="budget-row-item">
+                <input type="text" class="budget-name-input" data-b-name-idx="${idx}" value="${escapeHtml(b.name)}" aria-label="항목명" />
+                <div style="display: flex; align-items: center; gap: 6px;">
+                  <input type="number" class="budget-num-input" data-b-idx="${idx}" value="${b.amount}" step="1000" min="0" aria-label="금액" />
+                  <span>원</span>
+                  <button type="button" class="item-remove-link" data-del-b-idx="${idx}">삭제</button>
+                </div>
+              </div>
+            `).join("");
 
         document.getElementById("sheetDynamicBody").innerHTML = `
           <div class="budget-total-banner">
-            <span style="font-weight: 600;">예상 총 경비</span>
+            <div>
+              <div style="font-weight: 600;">예상 총 경비</div>
+              <div style="font-size: 14px; color: var(--colors-ink-muted-80);">5인 기준 · 1인당 약 ${perPerson.toLocaleString()}원</div>
+            </div>
             <span id="budgetGrandTotal" style="font-size: 24px; font-weight: 600; color: var(--colors-primary);">${total.toLocaleString()}원</span>
           </div>
+
+          <form class="budget-add-form" id="budgetAddForm">
+            <input type="text" class="search-input-pill" id="newBudgetNameInput" placeholder="새 항목명 (예: 간식·카페, 보드게임)" required />
+            <input type="number" class="search-input-pill" id="newBudgetAmtInput" placeholder="금액 (원)" step="1000" min="0" required style="max-width: 150px;" />
+            <button type="submit" class="button-primary">추가</button>
+          </form>
+
           <div>${rowsHtml}</div>
         `;
+
+        document.getElementById("budgetAddForm").addEventListener("submit", e => {
+          e.preventDefault();
+          const nameEl = document.getElementById("newBudgetNameInput");
+          const amtEl = document.getElementById("newBudgetAmtInput");
+          const name = nameEl.value.trim();
+          const amount = Math.max(0, Number(amtEl.value) || 0);
+          if (!name) return;
+
+          appState.budget.push({ id: "b_" + Date.now(), name, amount });
+          syncBudgetData();
+          renderBudgetBody();
+          showToast(`'${name}' 경비 항목이 추가되었습니다.`);
+        });
+
+        document.querySelectorAll("[data-b-name-idx]").forEach(inp => {
+          inp.addEventListener("change", e => {
+            const idx = Number(e.target.getAttribute("data-b-name-idx"));
+            const val = e.target.value.trim();
+            if (val) {
+              appState.budget[idx].name = val;
+              syncBudgetData();
+              showToast("항목명이 수정되었습니다.");
+            }
+          });
+        });
 
         document.querySelectorAll("[data-b-idx]").forEach(inp => {
           inp.addEventListener("change", e => {
             const idx = Number(e.target.getAttribute("data-b-idx"));
             appState.budget[idx].amount = Math.max(0, Number(e.target.value) || 0);
-            if (tripRef) {
-              tripRef.child("budget").set(appState.budget);
-            } else {
-              saveLocalCache();
-            }
-            const newTotal = appState.budget.reduce((acc, b) => acc + (Number(b.amount) || 0), 0);
-            document.getElementById("budgetGrandTotal").textContent = `${newTotal.toLocaleString()}원`;
+            syncBudgetData();
+            renderBudgetBody();
+          });
+        });
+
+        document.querySelectorAll("[data-del-b-idx]").forEach(btn => {
+          btn.addEventListener("click", () => {
+            const idx = Number(btn.getAttribute("data-del-b-idx"));
+            appState.budget.splice(idx, 1);
+            syncBudgetData();
+            renderBudgetBody();
+            showToast("경비 항목이 삭제되었습니다.");
           });
         });
       };
